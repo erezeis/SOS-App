@@ -30,7 +30,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func createdObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI(forRoomNumber:)), name: NotificationKeys.Room.roomNumber, object: Int)        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI(forRoomNumber:)), name: NotificationKeys.Room.roomNumber, object: nil)        
     }
     
     @objc func updateUI(forRoomNumber roomNumber: NSNotification){

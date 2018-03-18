@@ -45,8 +45,14 @@ class StartNewViewController: UIViewController {
             self.refGames.child("games/sos/\(count)").updateChildValues(newGame)
             
             self.refGames.child("games/sos/\(count)").observe(DataEventType.value, with: { (snapshot2) in
-                let value2 = snapshot2.value as! NSArray
+                print("HELLO IN SNAP2")
+                let value2 = snapshot2.value as! NSDictionary
                 print("\(value2)")
+                
+                //TODO
+                if 1>2 {
+                    self.notifyPlayerTwoJoined()
+                }
             })
         }
     }
@@ -68,11 +74,10 @@ class StartNewViewController: UIViewController {
     }
     
     
-    func notifyPlayerTwoJoined(){
-        
-        //TODO: - implement this method
+    func notifyPlayerTwoJoined() {
+        NotificationCenter.default.post(name: NotificationKeys.Room.roomNumber, object: index)
+        performSegue(withIdentifier: "goToGame", sender: self)
     }
-    
 }
 
 
