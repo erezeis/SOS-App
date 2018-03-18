@@ -227,8 +227,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func playerScored(){
-        //TODO
-        //print("Player has scored!!!")
+        
     }
     
     func gameOver(){
