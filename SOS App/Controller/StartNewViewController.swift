@@ -16,6 +16,7 @@ class StartNewViewController: UIViewController {
     @IBOutlet weak var roomNumberLabel: UILabel!
     
     var refGames : DatabaseReference!
+    var roomNumber : Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +30,18 @@ class StartNewViewController: UIViewController {
             let value1 = snapshot1.value as! NSArray
             let count : Int = value1.count
             
-            let roomNumber : Int = Int(count * 10000) + Int(arc4random_uniform(10000))
-            self.roomNumberLabel.text = String(roomNumber)
+            self.roomNumber = Int(count * 10000) + Int(arc4random_uniform(10000))
+            self.roomNumberLabel.text = String(self.roomNumber)
             SVProgressHUD.dismiss()
             
             //TODO: - add animation for waiting to player two
             
             var newGame : [String : String] = [String : String]()
             newGame["playerOneUid"] = playerOneUid
+            newGame["playerOneDisplayName"] = Auth.auth().currentUser?.email
             newGame["playerTwoUid"] = "nil"
-            newGame["roomNumber"] = String(roomNumber)
+            newGame["playerTwoDisplayName"] = "nil"
+            newGame["roomNumber"] = String(self.roomNumber)
             
             value1.adding(newGame)
             
@@ -50,7 +53,7 @@ class StartNewViewController: UIViewController {
                 
                 if playerTwoUid != "nil" {
                     if playerOneUid != playerTwoUid {
-                        self.notifyPlayerTwoJoined()
+                        self.notifyPlayerTwoJoined(roomNumber: self.roomNumber)
                     }
                 }
             })
@@ -73,13 +76,14 @@ class StartNewViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToGame" {
+            let gameVC = segue.destination as! GameRoomViewController
+            gameVC.roomNumber = roomNumber
+        }
+    }
     
-    func notifyPlayerTwoJoined() {
-        //TODO notify room number
+    func notifyPlayerTwoJoined(roomNumber: Int) {
         performSegue(withIdentifier: "goToGame", sender: self)
     }
 }
-
-
-
-

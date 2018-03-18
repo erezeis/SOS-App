@@ -85,7 +85,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome To SOS App" id="E9G-Yn-8in">
+                    <navigationItem key="navigationItem" title="Welcome To S.O.S App" id="E9G-Yn-8in">
                         <barButtonItem key="backBarButtonItem" title="Back" id="9Ji-HW-Rhq"/>
                     </navigationItem>
                     <connections>
@@ -155,7 +155,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C3A-2t-WgD"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up SOS App" id="oD4-iS-Gmh">
+                    <navigationItem key="navigationItem" title="Sign Up S.O.S App" id="oD4-iS-Gmh">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zbw-1f-Y7Q"/>
                     </navigationItem>
                     <connections>
@@ -343,10 +343,10 @@
             </objects>
             <point key="canvasLocation" x="2233" y="874"/>
         </scene>
-        <!--Game-->
+        <!--Game S.O.S-->
         <scene sceneID="9wS-eh-qMJ">
             <objects>
-                <viewController title="Game" id="sYR-Ou-YIp" customClass="GameRoomViewController" customModule="SOS_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Game S.O.S" id="sYR-Ou-YIp" customClass="GameRoomViewController" customModule="SOS_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VPz-mY-fBN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -354,34 +354,76 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="gby-ew-Ids">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting for player two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-AE-HmE">
-                                <rect key="frame" x="90" y="273" width="194.66666666666663" height="23.333333333333371"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dX7-I6-5mU">
+                                <rect key="frame" x="16" y="156" width="343" height="606"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-wY-Lc6">
+                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="606"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-AE-HmE">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="303"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNt-Ns-fiT">
+                                                <rect key="frame" x="0.0" y="303" width="171.66666666666666" height="303"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CIr-MV-PKz">
+                                        <rect key="frame" x="171.66666666666663" y="0.0" width="171.33333333333337" height="606"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-4X-Btx">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.33333333333334" height="303"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nb-lc-nFy">
+                                                <rect key="frame" x="0.0" y="303" width="171.33333333333334" height="303"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dX7-I6-5mU" secondAttribute="trailing" constant="16" id="272-DN-1Vj"/>
                             <constraint firstItem="Hqw-lU-cwA" firstAttribute="trailing" secondItem="gby-ew-Ids" secondAttribute="trailing" id="82b-iv-CnA"/>
                             <constraint firstItem="gby-ew-Ids" firstAttribute="top" secondItem="VPz-mY-fBN" secondAttribute="top" id="bhW-o9-wnF"/>
                             <constraint firstItem="gby-ew-Ids" firstAttribute="leading" secondItem="VPz-mY-fBN" secondAttribute="leading" id="dsS-2n-edM"/>
+                            <constraint firstItem="dX7-I6-5mU" firstAttribute="top" secondItem="VPz-mY-fBN" secondAttribute="topMargin" constant="16" id="ejm-rC-oyM"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="dX7-I6-5mU" secondAttribute="bottom" constant="16" id="hFK-gd-3g1"/>
+                            <constraint firstItem="dX7-I6-5mU" firstAttribute="leading" secondItem="VPz-mY-fBN" secondAttribute="leading" constant="16" id="jCe-7j-hkj"/>
                             <constraint firstAttribute="bottom" secondItem="gby-ew-Ids" secondAttribute="bottom" id="vQE-ee-yAg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hqw-lU-cwA"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Game" id="ppf-2A-XMz">
+                    <navigationItem key="navigationItem" title="S.O.S App" id="ppf-2A-XMz">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="Fis-dL-3vh">
                             <connections>
                                 <action selector="cancelGameButtonPressed:" destination="sYR-Ou-YIp" id="qiU-wW-Ac3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="playOneScoreLabel" destination="lNt-Ns-fiT" id="Oag-Aj-KHn"/>
+                        <outlet property="playerOneNameLabel" destination="bFk-AE-HmE" id="s86-O8-7cz"/>
+                        <outlet property="playerTwoNameLabel" destination="jY6-4X-Btx" id="GWd-x4-eX4"/>
+                        <outlet property="playerTwoScoreLabel" destination="2Nb-lc-nFy" id="Njk-5x-UdR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToR-qh-eHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="381"/>
+            <point key="canvasLocation" x="2815.5" y="381"/>
         </scene>
         <!--Start new-->
         <scene sceneID="LMM-BL-1z9">
@@ -517,7 +559,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UQq-cP-My1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Log In SOS App" id="9Do-TH-rtM">
+                    <navigationItem key="navigationItem" title="Log In S.O.S App" id="9Do-TH-rtM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="q9Q-Uz-5hZ"/>
                     </navigationItem>
                     <connections>
@@ -555,6 +597,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uHl-Xa-npD"/>
-        <segue reference="dK3-Uk-9sW"/>
+        <segue reference="ra3-Yr-dYd"/>
     </inferredMetricsTieBreakers>
 </document>

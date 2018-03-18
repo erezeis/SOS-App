@@ -17,14 +17,11 @@ class JoinExistingViewController: UIViewController {
     @IBOutlet weak var joinButton: UIButton!
     
     var refGames : DatabaseReference!
-    
+    var roomNumber : Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-    }
-    
+    }    
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         
@@ -40,6 +37,7 @@ class JoinExistingViewController: UIViewController {
             displayError(title: "Error", msg: "Invalid room number: \(roomTextFieldText)")
             return
         }
+        roomNumber = roomTextFieldInt
         
         if roomTextFieldInt<=0{
             displayError(title: "Error", msg: "Invalid room number: \(roomTextFieldInt)")
@@ -94,11 +92,18 @@ class JoinExistingViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToGame" {
+            let gameVC = segue.destination as! GameRoomViewController
+            gameVC.roomNumber = roomNumber
+        }
+    }
+    
     func onMatch(index: Int, uid: String){
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
         refGames.child("games/sos/\(index)/playerTwoUid").setValue(uid)
-        //notify room number
+        refGames.child("games/sos/\(index)/playerTwoDisplayName").setValue(Auth.auth().currentUser?.email)
         performSegue(withIdentifier: "goToGame", sender: self)
     }
     
