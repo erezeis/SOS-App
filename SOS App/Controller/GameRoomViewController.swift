@@ -7,14 +7,12 @@
 //
 
 import UIKit
-
+import Firebase
 
 class GameRoomViewController: UIViewController {
     
+    let myUid : String = (Auth.auth().currentUser?.uid)!
     
-    //TODO: - initialize the gameModel variable
-    var gameModel : GameModel = GameModel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         createdObservers()
@@ -25,12 +23,11 @@ class GameRoomViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     func createdObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI(forRoomNumber:)), name: NotificationKeys.Room.roomNumber, object: nil)        
+        //get room number
     }
     
     @objc func updateUI(forRoomNumber roomNumber: NSNotification){

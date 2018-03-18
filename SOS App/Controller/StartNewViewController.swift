@@ -20,7 +20,7 @@ class StartNewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let uid : String = (Auth.auth().currentUser?.uid)!
+        let playerOneUid : String = (Auth.auth().currentUser?.uid)!
         
         SVProgressHUD.show()
         refGames = Database.database().reference()
@@ -36,7 +36,7 @@ class StartNewViewController: UIViewController {
             //TODO: - add animation for waiting to player two
             
             var newGame : [String : String] = [String : String]()
-            newGame["playerOneUid"] = uid
+            newGame["playerOneUid"] = playerOneUid
             newGame["playerTwoUid"] = "nil"
             newGame["roomNumber"] = String(roomNumber)
             
@@ -45,13 +45,13 @@ class StartNewViewController: UIViewController {
             self.refGames.child("games/sos/\(count)").updateChildValues(newGame)
             
             self.refGames.child("games/sos/\(count)").observe(DataEventType.value, with: { (snapshot2) in
-                print("HELLO IN SNAP2")
                 let value2 = snapshot2.value as! NSDictionary
-                print("\(value2)")
+                let playerTwoUid : String = value2["playerTwoUid"] as! String
                 
-                //TODO
-                if 1>2 {
-                    self.notifyPlayerTwoJoined()
+                if playerTwoUid != "nil" {
+                    if playerOneUid != playerTwoUid {
+                        self.notifyPlayerTwoJoined()
+                    }
                 }
             })
         }
@@ -75,7 +75,7 @@ class StartNewViewController: UIViewController {
     
     
     func notifyPlayerTwoJoined() {
-        NotificationCenter.default.post(name: NotificationKeys.Room.roomNumber, object: index)
+        //TODO notify room number
         performSegue(withIdentifier: "goToGame", sender: self)
     }
 }
