@@ -92,6 +92,7 @@
                         <segue destination="bLs-bh-1Eh" kind="push" identifier="goToLogin" id="ZED-qj-q5g"/>
                         <segue destination="g02-AD-gYR" kind="push" identifier="goToRegister" id="pCc-6i-w5A"/>
                         <segue destination="17J-uO-uTN" kind="push" identifier="goToMainMenu" id="ukB-co-0K5"/>
+                        <segue destination="sYR-Ou-YIp" kind="push" identifier="goToGameButDontForgetToRemoveThisBeforeFinishing" id="wpd-qf-PTS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -621,7 +622,7 @@
         <image name="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uHl-Xa-npD"/>
-        <segue reference="ra3-Yr-dYd"/>
+        <segue reference="wpd-qf-PTS"/>
+        <segue reference="ukB-co-0K5"/>
     </inferredMetricsTieBreakers>
 </document>

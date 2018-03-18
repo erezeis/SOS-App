@@ -14,17 +14,18 @@ class WelcomeViewController: UIViewController {
     
     let TAG_REGISTER : Int = 101
     let TAG_LOGIN : Int = 102
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let user = Auth.auth().currentUser
         if user != nil {
-            performSegue(withIdentifier: "goToMainMenu", sender: self)
+            //performSegue(withIdentifier: "goToMainMenu", sender: self)
+            performSegue(withIdentifier: "goToGameButDontForgetToRemoveThisBeforeFinishing", sender: self)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,6 +46,6 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-
+    
 }
 

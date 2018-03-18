@@ -34,10 +34,10 @@ class GameRoomViewController: UIViewController {
     
     var playerOneScore : Int = 0
     var playerTwoScore : Int = 0
-    var playerNumber : Int = -1
+    var playerNumber : Int = -1 // DONT FORGET TO REMOVE THIS!!!!!
     
     let myUid : String = (Auth.auth().currentUser?.uid)!
-    var roomNumber : Int = -1
+    var roomNumber : Int = 11111 // DONT FORGET TO REMOVE THIS!!!!!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,13 @@ class GameRoomViewController: UIViewController {
         setupBoard()
     }
     
-    func setUpPlayers()
-    {
+    func setUpPlayers() {
+        print("--> setUpPlayers")
         let i : Int = roomNumber/10000
         refGames = Database.database().reference()
-        refGames.child("games/sos/\(i)").observeSingleEvent(of: .value) { (snapshot1) in
+        let childName : String = "games/sos/\(i)"
+        print("child=\(childName)")
+        refGames.child(childName).observeSingleEvent(of: .value) { (snapshot1) in
             
             //Get Dictionary from FireBase
             let value1 : NSDictionary = (snapshot1.value as? NSDictionary)!
