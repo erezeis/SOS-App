@@ -17,8 +17,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
-    var refGames : DatabaseReference!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,7 +47,15 @@ class RegisterViewController: UIViewController {
                 let uid : String = (user?.uid)!
                 //self.refGames.child("games/users/\(uid)/displayName/").setValue(displayName)
                 
-                //self.refGames.child("games/users/").child("\(uid)").child("displayName").setValue(displayName)
+                //let values : [String : String] = [uid: displayName]
+                
+                //self.refGames.child("users").child("\(uid)").child("displayName").setValue(displayName)
+                
+               // self.refUsers.child("users").updateChildValues(values)
+                
+                Database.database().reference().child("users").child("\(uid)").child("displayName").setValue(displayName)
+                
+               
                 
                 self.performSegue(withIdentifier: "goToMainMenu", sender: self)
             }

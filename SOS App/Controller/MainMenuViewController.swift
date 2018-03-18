@@ -22,7 +22,7 @@ class MainMenuViewController: UIViewController {
         
         let email = Auth.auth().currentUser!.email
 
-        loggedInEmail.text!.append(email!)
+        loggedInEmail.text!.append("\n\(email!)")
     }
 
     

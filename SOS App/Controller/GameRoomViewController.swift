@@ -15,6 +15,8 @@ class GameRoomViewController: UIViewController {
     
     var refGames : DatabaseReference!
     
+    @IBOutlet weak var board: UIStackView!
+    
     @IBOutlet weak var playerOneNameLabel: UILabel!
     @IBOutlet weak var playOneScoreLabel: UILabel!
     @IBOutlet weak var playerTwoNameLabel: UILabel!
@@ -37,19 +39,20 @@ class GameRoomViewController: UIViewController {
         playerOneScore = 0
         playerTwoScore = 0
         updateScores()
+        setupBoard()
     }
     
     func setUpPlayers()
     {
         let i : Int = roomNumber/10000
         refGames = Database.database().reference()
-        refGames.child("games/sos/\(i)").observeSingleEvent(of: .value) { (snapshot) in
+        refGames.child("games/sos/\(i)").observeSingleEvent(of: .value) { (snapshot1) in
             
             //Get Dictionary from FireBase
-            let value : NSDictionary = (snapshot.value as? NSDictionary)!
+            let value1 : NSDictionary = (snapshot1.value as? NSDictionary)!
             
-            let playerOneUid : String = value["playerOneUid"] as! String
-            let playerTwoUid : String = value["playerTwoUid"] as! String
+            let playerOneUid : String = value1["playerOneUid"] as! String
+            let playerTwoUid : String = value1["playerTwoUid"] as! String
             
             let uid : String = (Auth.auth().currentUser?.uid)!
             if uid == playerOneUid {
@@ -59,12 +62,40 @@ class GameRoomViewController: UIViewController {
                 self.playerNumber = 2
             }
             
-            let playerOneDisplayName : String = value["playerOneDisplayName"] as! String
-            let playerTwoDisplayName : String = value["playerTwoDisplayName"] as! String
-         
-            self.playerOneNameLabel.text = (playerOneDisplayName=="nil") ? "Player One" : playerOneDisplayName
-            self.playerTwoNameLabel.text = (playerTwoDisplayName=="nil") ? "Player Two" : playerTwoDisplayName
+            self.refGames.child("users/\(playerOneUid)").observeSingleEvent(of: .value) { (snapshot2) in
+                let value2 : NSDictionary = (snapshot2.value as? NSDictionary)!
+                let displayName : String = value2["displayName"] as! String
+                self.playerOneNameLabel.text = displayName
+            }
+            
+            self.refGames.child("users/\(playerTwoUid)").observeSingleEvent(of: .value) { (snapshot2) in
+                let value2 : NSDictionary = (snapshot2.value as? NSDictionary)!
+                let displayName : String = value2["displayName"] as! String
+                self.playerTwoNameLabel.text = displayName
+            }
         }
+    }
+    
+    func setupBoard() {
+        //let screenWidth : CGFloat = UIScreen.main.bounds.width
+       //board.frame.h= screenWidth        
+        
+        for i in 1...GAME_BOARD_DIM {
+            
+            let row = UIStackView()
+            row.distribution = .fillEqually
+            
+            for j in 1...GAME_BOARD_DIM {
+                
+                let button = UIButton()
+                button.backgroundColor = UIColor.blue                
+                button.setTitle("\(i),\(j)", for: .normal)
+
+                row.addSubview(button)
+            }
+            board.addSubview(row)
+        }
+        board.distribution = .fillEqually
     }
     
     func updateScores(){

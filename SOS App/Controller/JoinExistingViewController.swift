@@ -103,7 +103,6 @@ class JoinExistingViewController: UIViewController {
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
         refGames.child("games/sos/\(index)/playerTwoUid").setValue(uid)
-        refGames.child("games/sos/\(index)/playerTwoDisplayName").setValue(Auth.auth().currentUser?.email)
         performSegue(withIdentifier: "goToGame", sender: self)
     }
     

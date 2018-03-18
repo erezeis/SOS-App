@@ -37,9 +37,7 @@ class StartNewViewController: UIViewController {
             
             var newGame : [String : String] = [String : String]()
             newGame["playerOneUid"] = playerOneUid
-            newGame["playerOneDisplayName"] = Auth.auth().currentUser?.email
             newGame["playerTwoUid"] = "nil"
-            newGame["playerTwoDisplayName"] = "nil"
             newGame["roomNumber"] = String(self.roomNumber)
             
             value1.adding(newGame)
