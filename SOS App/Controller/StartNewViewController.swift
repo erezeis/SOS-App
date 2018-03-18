@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-
 class StartNewViewController: UIViewController {
     
     @IBOutlet weak var roomNumberLabel: UILabel!
