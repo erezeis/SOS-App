@@ -17,12 +17,26 @@ class GameRoomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        createdObservers()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
+    
+    func createdObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI(forRoomNumber:)), name: NotificationKeys.Room.roomNumber, object: Int)        
+    }
+    
+    @objc func updateUI(forRoomNumber roomNumber: NSNotification){
+        
+    }
+   
     
     @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
         

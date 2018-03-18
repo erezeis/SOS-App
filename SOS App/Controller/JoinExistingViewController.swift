@@ -98,6 +98,7 @@ class JoinExistingViewController: UIViewController {
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
         refGames.child("games/sos/\(index)/playerTwoUid").setValue(uid)
+        NotificationCenter.default.post(name: NotificationKeys.Room.roomNumber, object: index)
         performSegue(withIdentifier: "goToGame", sender: self)
     }
     
