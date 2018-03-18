@@ -354,6 +354,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="gby-ew-Ids">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting for player two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-AE-HmE">
+                                <rect key="frame" x="90" y="273" width="194.66666666666663" height="23.333333333333371"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -364,7 +371,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hqw-lU-cwA"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Game" id="ppf-2A-XMz"/>
+                    <navigationItem key="navigationItem" title="Game" id="ppf-2A-XMz">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="Fis-dL-3vh">
+                            <connections>
+                                <action selector="cancelGameButtonPressed:" destination="sYR-Ou-YIp" id="qiU-wW-Ac3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToR-qh-eHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -541,7 +554,7 @@
         <image name="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="B39-TI-wNu"/>
+        <segue reference="uHl-Xa-npD"/>
         <segue reference="dK3-Uk-9sW"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -24,10 +24,10 @@ class StartNewViewController: UIViewController {
         
         SVProgressHUD.show()
         refGames = Database.database().reference()
-        refGames.child("games/sos").observeSingleEvent(of: .value) { (snapshot) in
+        refGames.child("games/sos").observeSingleEvent(of: .value) { (snapshot1) in
             
-            let value = snapshot.value as! NSArray
-            let count : Int = value.count
+            let value1 = snapshot1.value as! NSArray
+            let count : Int = value1.count
             
             let roomNumber : Int = Int(count * 10000) + Int(arc4random_uniform(10000))
             self.roomNumberLabel.text = String(roomNumber)
@@ -40,18 +40,15 @@ class StartNewViewController: UIViewController {
             newGame["playerTwoUid"] = "nil"
             newGame["roomNumber"] = String(roomNumber)
             
-            value.adding(newGame)
+            value1.adding(newGame)
             
             self.refGames.child("games/sos/\(count)").updateChildValues(newGame)
             
+            self.refGames.child("games/sos/\(count)").observe(DataEventType.value, with: { (snapshot2) in
+                let value2 = snapshot2.value as! NSArray
+                print("\(value2)")
+            })
         }
-        
-        
-        
-        
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

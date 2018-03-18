@@ -56,31 +56,48 @@ class JoinExistingViewController: UIViewController {
         SVProgressHUD.show()
         refGames.child("games/sos/\(i)").observeSingleEvent(of: .value) { (snapshot) in
             
+            //Get Dictionary from FireBase
             guard let value : NSDictionary = snapshot.value as? NSDictionary else {
                 self.displayError(title: "Error", msg: "Room \(roomTextFieldInt) not found")
                 return
             }
-           
+            
+            //Get room number from DB
             let roomNumberDB : String = value["roomNumber"] as! String
             
-            if roomTextFieldText==roomNumberDB {
-                
-                let playerTwoUid : String = value["playerTwoUid"] as! String
-                
-                print("playerTwoUid=\(playerTwoUid)")
-                return
-                
-                //self.onMatch(index: i)
-            } else {
+            //Check if room number from DB is not same as room number typed by user
+            if roomTextFieldText != roomNumberDB {
                 self.displayError(title: "Error", msg: "Room \(roomTextFieldInt) not found")
+                return
             }
+            
+            //Get player 1's uid
+            let playerOneUid : String = value["playerOneUid"] as! String
+            let uid : String = (Auth.auth().currentUser?.uid)!
+            
+            //Check if player 1's uid is the same as current user's uid
+            if playerOneUid==uid {
+                self.displayError(title: "Error", msg: "Cannot join room \(roomTextFieldInt)")
+                return
+            }
+            
+            let playerTwoUid : String = value["playerTwoUid"] as! String
+            
+            //Check if room is taken
+            if playerTwoUid != "nil" {
+                self.displayError(title: "Error", msg: "Room \(roomTextFieldInt) is already taken")
+                return
+            }
+            
+            //You may now join the game!!
+            self.onMatch(index: i, uid: uid)
         }
     }
     
-    func onMatch(index: Int){
+    func onMatch(index: Int, uid: String){
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
-        refGames.child("games/sos/\(index)/playerTwoUid").setValue(Auth.auth().currentUser?.uid)
+        refGames.child("games/sos/\(index)/playerTwoUid").setValue(uid)
         performSegue(withIdentifier: "goToGame", sender: self)
     }
     

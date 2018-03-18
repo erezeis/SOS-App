@@ -17,7 +17,19 @@ class GameRoomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
+        
+        //TODO - Prompt: are you sure?
+    }
+    
+    
+    
+    
 }
