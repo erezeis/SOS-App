@@ -44,6 +44,8 @@ class StartNewViewController: UIViewController {
             var newGame : [String : String] = [String : String]()
             newGame["playerOneUid"] = playerOneUid
             newGame["playerTwoUid"] = "nil"
+            newGame["rematch1"] = "no"
+            newGame["rematch2"] = "no"
             newGame["gameStatus"] = "Room opened"
             newGame["roomNumber"] = String(self.roomNumber)
             newGame["moves"] = ""

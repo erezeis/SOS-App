@@ -40,10 +40,12 @@ class GameRoomViewController: UIViewController {
     var playerType : String = ""
     var isTurnToPlay : Bool = false
     var isGameOver : Bool = false
+    var isWaiting : Bool = false
     var moves : String = ""
     
     let myUid : String = (Auth.auth().currentUser?.uid)!
-    var roomNumber : Int = -1 
+    var roomNumber : Int = -1
+    var index : Int = -1
     
     @IBOutlet weak var rematchButton: UIButton!
     
@@ -54,12 +56,16 @@ class GameRoomViewController: UIViewController {
         self.title = "#\(roomNumber)"
         isTurnToPlay = false
         isGameOver = false
+        index = roomNumber/10000
         setUpButtons()
         setUpPlayers()
+        
+        rematchButton.setTitle("", for: .normal)
+        rematchButton.backgroundColor = UIColor.black
+        rematchButton.tintColor = UIColor.black
     }
     
     func postPlayersSetup(){
-        let index : Int = roomNumber/10000
         self.refGames.child("games/xoxo/\(index)/moves").observe(DataEventType.value, with: { (snapshot) in
             let moves = snapshot.value as! NSString
             self.moves = String("\(moves)")
@@ -103,9 +109,7 @@ class GameRoomViewController: UIViewController {
         playOneTypeLabel.text = "X"
         playerTwoTypeLabel.text = "O"
         
-        let i : Int = roomNumber/10000
-        
-        refGames.child("games/xoxo/\(i)").observeSingleEvent(of: .value) { (snapshot1) in
+        refGames.child("games/xoxo/\(index)").observeSingleEvent(of: .value) { (snapshot1) in
             
             //Get Dictionary from FireBase
             let value1 : NSDictionary = (snapshot1.value as? NSDictionary)!
@@ -344,13 +348,11 @@ class GameRoomViewController: UIViewController {
     }
     
     func addMoveToDB(tag: Int){
-        let index : Int = roomNumber/10000
         refGames.child("games/xoxo/\(index)/moves").setValue("\(moves)\(tag)")
     }
     
     func gameCanceledByMe(){
         setGameIsOver()
-        let index : Int = roomNumber/10000
         refGames.child("games/xoxo/\(index)/gameStatus").setValue("Game canceled by \(playerNumber)")
         refGames.removeAllObservers()
         goBackToMainMenu()
@@ -387,11 +389,61 @@ class GameRoomViewController: UIViewController {
     
     func setGameIsOver(){
         isGameOver = true
+        rematchButton.setTitle("Click here for a rematch", for: .normal)
+        rematchButton.backgroundColor = UIColor.white
+        rematchButton.tintColor = UIColor.black
     }
     
     @IBAction func rematchButtonPressed(_ sender: UIButton) {
         guard isGameOver else {
             return
         }
+        
+        guard !isWaiting else {
+            return
+        }
+        
+        if playerNumber==1 {
+            isWaiting = true
+            let name : String = playerTwoNameLabel.text!
+            rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
+            refGames.child("games/xoxo/\(index)/rematch1").setValue("yes")
+            self.refGames.child("games/xoxo/\(index)/rematch2").observe(DataEventType.value, with: { (snapshot) in
+                let value = snapshot.value as! NSString
+                let rematch2 : String = String("\(value)")
+                if rematch2=="yes"{
+                    self.resetGame()
+                }
+            })
+            
+        } else if playerNumber==2 {
+            isWaiting = true
+            let name : String = playerOneNameLabel.text!
+            rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
+            refGames.child("games/xoxo/\(index)/rematch2").setValue("yes")
+            self.refGames.child("games/xoxo/\(index)/rematch1").observe(DataEventType.value, with: { (snapshot) in
+                let value = snapshot.value as! NSString
+                let rematch1 : String = String("\(value)")
+                if rematch1=="yes"{
+                    self.resetGame()
+                }
+            })
+        }
+    }
+    
+    func resetGame(){
+        if playerNumber==1{
+            refGames.child("games/xoxo/\(index)/rematch1").setValue("no")
+            refGames.child("games/xoxo/\(index)/rematch2").setValue("no")
+            refGames.child("games/xoxo/\(index)/rematch1").setValue("Game started")
+            refGames.child("games/xoxo/\(index)/moves").setValue("")
+        }
+        setUpButtons()
+        gameOverLabel.text = ""
+        isTurnToPlay = false
+        isGameOver = false
+        rematchButton.setTitle("", for: .normal)
+        rematchButton.backgroundColor = UIColor.black
+        rematchButton.tintColor = UIColor.black
     }
 }
