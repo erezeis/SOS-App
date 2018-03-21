@@ -28,6 +28,7 @@ class GameRoomViewController: UIViewController {
     
     @IBOutlet weak var board: UIStackView!
     
+    @IBOutlet weak var gameOverLabel: UILabel!
     @IBOutlet weak var statusBarLabel: UILabel!
     
     @IBOutlet weak var playerOneNameLabel: UILabel!
@@ -314,6 +315,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func declareWinner(winner : String){
+        gameOverLabel.text = "GAME OVER"
         if playerType==winner {
                 statusBarLabel.text = "Oh yeah! \(winner) wins!!"
         } else {
@@ -324,6 +326,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func declareNoWinner(){
+        gameOverLabel.text = "GAME OVER"
         statusBarLabel.text = "It's a Tied Game"
         postGame()
     }
