@@ -19,6 +19,7 @@ class StartNewViewController: UIViewController {
     var roomNumber : Int = -1
     
     override func viewDidLoad() {
+        print("StartNewViewController --> viewDidLoad")
         super.viewDidLoad()
         
         let playerOneUid : String = (Auth.auth().currentUser?.uid)!
@@ -52,7 +53,7 @@ class StartNewViewController: UIViewController {
                 let value2 = snapshot2.value as! NSDictionary
                 let status : String = value2["gameStatus"] as! String
                 let playerTwoUid : String = value2["playerTwoUid"] as! String
-                                
+                
                 let cond : Bool = (playerTwoUid != "nil") && (status != "Game canceled by 1") && (status != "Game canceled by 2")
                 
                 if cond {
@@ -65,13 +66,13 @@ class StartNewViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("StartNewViewController --> viewWillAppear")
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     
     @IBAction func buttonPressed(_ sender: UIBarButtonItem) {
-        
+        print("StartNewViewController --> buttonPressed")
         //show alert "are you sure"
         //TODO: - connect to firebase and close room number
         
@@ -81,6 +82,7 @@ class StartNewViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("StartNewViewController --> prepare")
         if segue.identifier == "goToGame" {
             let gameVC = segue.destination as! GameRoomViewController
             gameVC.roomNumber = roomNumber
@@ -88,7 +90,8 @@ class StartNewViewController: UIViewController {
     }
     
     func notifyPlayerTwoJoined(roomNumber: Int) {
+        print("StartNewViewController --> notifyPlayerTwoJoined")
         performSegue(withIdentifier: "goToGame", sender: self)
-
+        
     }
 }
