@@ -443,5 +443,8 @@ class GameRoomViewController: UIViewController {
         rematchButton.setTitle("", for: .normal)
         rematchButton.backgroundColor = UIColor.black
         rematchButton.tintColor = UIColor.black
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        let cancelButton : UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelGameButtonPressed(_:)))
+        self.navigationItem.setRightBarButton(cancelButton, animated: false)
     }
 }
