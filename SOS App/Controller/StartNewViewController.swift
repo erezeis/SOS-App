@@ -17,6 +17,7 @@ class StartNewViewController: UIViewController {
     
     var refGames : DatabaseReference!
     var roomNumber : Int = -1
+    var isGameStated : Bool = false
     
     override func viewDidLoad() {
         print("StartNewViewController --> viewDidLoad")
@@ -27,6 +28,9 @@ class StartNewViewController: UIViewController {
         SVProgressHUD.show()
         refGames = Database.database().reference()
         refGames.child("games/xoxo").observeSingleEvent(of: .value) { (snapshot1) in
+            guard !self.isGameStated else {
+                return
+            }
             
             let value1 = snapshot1.value as! NSArray
             let count : Int = value1.count
@@ -50,6 +54,10 @@ class StartNewViewController: UIViewController {
             self.refGames.child("games/xoxo/\(count)").updateChildValues(newGame)
             
             self.refGames.child("games/xoxo/\(count)").observe(DataEventType.value, with: { (snapshot2) in
+                guard !self.isGameStated else {
+                    return
+                }
+                
                 let value2 = snapshot2.value as! NSDictionary
                 let status : String = value2["gameStatus"] as! String
                 let playerTwoUid : String = value2["playerTwoUid"] as! String
@@ -91,8 +99,12 @@ class StartNewViewController: UIViewController {
     
     func notifyPlayerTwoJoined(roomNumber: Int) {
         print("StartNewViewController --> notifyPlayerTwoJoined")
-        self.refGames.removeAllObservers()
-        performSegue(withIdentifier: "goToGame", sender: self)
+        guard !self.isGameStated else {
+            return
+        }
         
+        isGameStated = true
+        self.refGames.removeAllObservers()
+        performSegue(withIdentifier: "goToGame", sender: self)        
     }
 }
