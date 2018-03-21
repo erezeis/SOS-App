@@ -442,6 +442,7 @@ class GameRoomViewController: UIViewController {
         gameOverLabel.text = ""
         isTurnToPlay = false
         isGameOver = false
+        isWaiting = false
         rematchButton.setTitle("", for: .normal)
         rematchButton.backgroundColor = UIColor.black
         rematchButton.tintColor = UIColor.black
