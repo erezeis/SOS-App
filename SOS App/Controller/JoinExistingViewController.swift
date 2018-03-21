@@ -20,19 +20,16 @@ class JoinExistingViewController: UIViewController {
     var isGameStated : Bool = false
     
     override func viewDidLoad() {
-        print("JoinExistingViewController --> viewDidLoad")
         super.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("JoinExistingViewController --> viewDidAppear")
         if isGameStated {
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        print("JoinExistingViewController --> buttonPressed")
         joinButton.isEnabled = false
         
         let roomTextFieldText : String = roomTextField.text!
@@ -104,7 +101,6 @@ class JoinExistingViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("JoinExistingViewController --> prepare")
         if segue.identifier == "goToGame" {
             let gameVC = segue.destination as! GameRoomViewController
             gameVC.roomNumber = roomNumber
@@ -112,7 +108,6 @@ class JoinExistingViewController: UIViewController {
     }
     
     func onMatch(index: Int, uid: String){
-        print("JoinExistingViewController --> onMatch")
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
         refGames.child("games/xoxo/\(index)/gameStatus").setValue("Room joined")
@@ -123,7 +118,6 @@ class JoinExistingViewController: UIViewController {
     }
     
     func displayError(title : String, msg : String) {
-        print("JoinExistingViewController --> displayError")
         SVProgressHUD.dismiss()
         joinButton.isEnabled = true
         

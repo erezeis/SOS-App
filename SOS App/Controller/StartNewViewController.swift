@@ -20,7 +20,6 @@ class StartNewViewController: UIViewController {
     var isGameStated : Bool = false
     
     override func viewDidLoad() {
-        print("StartNewViewController --> viewDidLoad")
         super.viewDidLoad()
         
         let playerOneUid : String = (Auth.auth().currentUser?.uid)!
@@ -74,20 +73,17 @@ class StartNewViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("StartNewViewController --> viewDidAppear")
         if isGameStated {
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("StartNewViewController --> viewWillAppear")
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
     
     @IBAction func buttonPressed(_ sender: UIBarButtonItem) {
-        print("StartNewViewController --> buttonPressed")
         //show alert "are you sure"
         //TODO: - connect to firebase and close room number
         
@@ -97,7 +93,6 @@ class StartNewViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("StartNewViewController --> prepare")
         if segue.identifier == "goToGame" {
             let gameVC = segue.destination as! GameRoomViewController
             gameVC.roomNumber = roomNumber
@@ -105,7 +100,6 @@ class StartNewViewController: UIViewController {
     }
     
     func notifyPlayerTwoJoined(roomNumber: Int) {
-        print("StartNewViewController --> notifyPlayerTwoJoined")
         guard !self.isGameStated else {
             return
         }
