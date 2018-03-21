@@ -11,30 +11,21 @@ import Firebase
 
 class GameRoomViewController: UIViewController {
     
-    //colors
-    let BGCOLOR_UNSELECTED : UIColor = UIColor.gray
-    let BGCOLOR_S_SELECTED : UIColor = UIColor.blue
-    let BGCOLOR_O_SELECTED : UIColor = UIColor.blue
-    let BGCOLOR_SCORED_BUTTON : UIColor = UIColor.red
-    
-    let GAME_BOARD_DIM : Int = 7
     var buttons : [Int : UIButton] = [Int : UIButton]()
-    var count : Int = 0
     
     var refGames : DatabaseReference!
     
     @IBOutlet weak var board: UIStackView!
     
-    @IBOutlet weak var output: UILabel!
+    @IBOutlet weak var statusBarLabel: UILabel!
     
     @IBOutlet weak var playerOneNameLabel: UILabel!
-    @IBOutlet weak var playOneScoreLabel: UILabel!
+    @IBOutlet weak var playOneTypeLabel: UILabel!
     @IBOutlet weak var playerTwoNameLabel: UILabel!
-    @IBOutlet weak var playerTwoScoreLabel: UILabel!
+    @IBOutlet weak var playerTwoTypeLabel: UILabel!
     
-    var playerOneScore : Int = 0
-    var playerTwoScore : Int = 0
-    var playerNumber : Int = -1 // DONT FORGET TO REMOVE THIS!!!!!
+    var playerNumber : Int = -1
+    var isTurnToPlay : Bool = false
     
     let myUid : String = (Auth.auth().currentUser?.uid)!
     var roomNumber : Int = 11111 // DONT FORGET TO REMOVE THIS!!!!!
@@ -42,23 +33,27 @@ class GameRoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "S.O.S App #\(roomNumber)"
+        self.title = "X.O.X.O App #\(roomNumber)"
+        isTurnToPlay = false
         
+        refGames = Database.database().reference()
         setUpPlayers()
         
-        playerOneScore = 0
-        playerTwoScore = 0
-        updateScores()
-        setupBoard()
+        let index : Int = roomNumber/10000
+        self.refGames.child("games/xoxo/\(index)").observe(DataEventType.value, with: { (snapshot) in
+            let value = snapshot.value as! NSDictionary
+            let moves : String = value["moves"] as! String
+            self.updateMoves(moves: moves)
+        })
     }
     
     func setUpPlayers() {
-        print("--> setUpPlayers")
+        playOneTypeLabel.text = "X"
+        playerTwoTypeLabel.text = "O"
+        
         let i : Int = roomNumber/10000
-        refGames = Database.database().reference()
-        let childName : String = "games/sos/\(i)"
-        print("child=\(childName)")
-        refGames.child(childName).observeSingleEvent(of: .value) { (snapshot1) in
+        
+        refGames.child("games/xoxo/\(i)").observeSingleEvent(of: .value) { (snapshot1) in
             
             //Get Dictionary from FireBase
             let value1 : NSDictionary = (snapshot1.value as? NSDictionary)!
@@ -88,151 +83,16 @@ class GameRoomViewController: UIViewController {
         }
     }
     
-    func setupBoard() {
-        
-        board.axis = .horizontal
-        board.alignment = .center
-        board.spacing = 0
-        
-        for i in 1...GAME_BOARD_DIM*2 {
-            
-            let row = UIStackView()
-            row.axis = .vertical
-            
-            row.distribution = .fillEqually
-            row.spacing = 0
-            
-            for j in 1...GAME_BOARD_DIM {
-                
-                var type : String = "S"
-                if i%2==0 {
-                    type = "O"
-                }
-                
-                let key : Int = j*100 + i
-                
-                let button = UIButton()
-                button.tag = key
-                button.backgroundColor = BGCOLOR_UNSELECTED
-                button.setTitle(type, for: .normal)
-                button.addTarget(self, action: #selector(gameButtonPressed(sender:)), for: .touchUpInside)
-                
-                buttons[key] = button
-                
-                row.alignment = .center
-                row.addArrangedSubview(button)
-            }
-            board.addArrangedSubview(row)
-        }
-        board.distribution = .fillEqually
-    }
-    
-    func updateScores(){
-        playOneScoreLabel.text = "\(playerOneScore)"
-        playerTwoScoreLabel.text = "\(playerTwoScore)"
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
-    
-    @objc func gameButtonPressed(sender: UIButton){
-        sender.isEnabled = false
-        
-        disableButton(button: sender, color: sender.backgroundColor!, clear: false)
-        
-        let tag : Int = sender.tag
-        let type : String = (buttons[tag]?.titleLabel?.text)!
-        var color : UIColor = BGCOLOR_O_SELECTED
-        
-        if type == "S" {
-            color = BGCOLOR_S_SELECTED
-        }
-        
-        sender.backgroundColor = color
-        
-        let row : Int = tag/100
-        let col : Int = tag%100
-        
-        if tag%2==0{
-            disableButton(button: buttons[tag-1]!, color: color, clear: true)
-        } else {
-            disableButton(button: buttons[tag+1]!, color: color, clear: true)
-        }
-        
-        checkForPoints(tag: tag, row: row, col: col, type: type)
-        
-        if count == buttons.count {
-            gameOver()
-        }
-    }
-    
-    
     
     @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
         
         //TODO - Prompt: are you sure?
     }
     
-    func disableButton(button: UIButton?, color: UIColor, clear: Bool){
-        count = count + 1
-        button?.isEnabled = false
-        button?.backgroundColor = color
-        if clear {
-            button?.setTitle(" ", for: .normal)
-        }
-    }
-    
-    func checkForPoints(tag: Int, row: Int, col: Int, type: String)
-    {
-        if type == "O" {
-            checkForPoints(button1: buttons[tag-3], button2: buttons[tag], button3: buttons[tag+1])
-            checkForPoints(button1: buttons[tag-101], button2: buttons[tag], button3: buttons[tag+99])
-            
-            //checkForPoints(button1: buttons[tag-103], button2: buttons[tag], button3: buttons[tag+101])
-            //checkForPoints(button1: buttons[tag+97], button2: buttons[tag], button3: buttons[tag-97])
-        }
-        
-        if type == "S" {
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag+3], button3: buttons[tag+4])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag+103], button3: buttons[tag+204])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag+101], button3: buttons[tag+200])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag-1], button3: buttons[tag-4])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag-99], button3: buttons[tag-200])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag-97], button3: buttons[tag-196])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag-101], button3: buttons[tag-204])
-            //checkForPoints(button1: buttons[tag], button2: buttons[tag+99], button3: buttons[tag+196])
-        }
-    }
-    
-    func checkForPoints(button1: UIButton?, button2: UIButton?, button3: UIButton?){
-        let cond : Bool = button1 != nil && button2 != nil && button3 != nil
-        if cond {
-            checkForPointsNoNulls(button1: button1!, button2: button2!, button3: button3!)
-        }
-    }
-    
-    func checkForPointsNoNulls(button1: UIButton!, button2: UIButton!, button3: UIButton!){
-        let cond : Bool = button1?.isEnabled==false && button1?.isEnabled==false && button1?.isEnabled==false
-        if cond {
-            disableButton(button: button1!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            disableButton(button: buttons[(button1?.tag)!+1]!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            
-            disableButton(button: button2!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            disableButton(button: buttons[(button2?.tag)!-1]!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            
-            disableButton(button: button3!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            disableButton(button: buttons[(button3?.tag)!+1]!, color: BGCOLOR_SCORED_BUTTON, clear: false)
-            
-            playerScored()
-        }
-    }
-    
-    func playerScored(){
-        
-    }
-    
-    func gameOver(){
-        output.text = "GAME OVER"
+    func updateMoves(moves : String){
+         print("moves=\(moves)")
     }
 }

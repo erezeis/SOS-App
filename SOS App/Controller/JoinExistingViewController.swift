@@ -52,7 +52,7 @@ class JoinExistingViewController: UIViewController {
         
         refGames = Database.database().reference()
         SVProgressHUD.show()
-        refGames.child("games/sos/\(i)").observeSingleEvent(of: .value) { (snapshot) in
+        refGames.child("games/xoxo/\(i)").observeSingleEvent(of: .value) { (snapshot) in
             
             //Get Dictionary from FireBase
             guard let value : NSDictionary = snapshot.value as? NSDictionary else {
@@ -102,7 +102,7 @@ class JoinExistingViewController: UIViewController {
     func onMatch(index: Int, uid: String){
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
-        refGames.child("games/sos/\(index)/playerTwoUid").setValue(uid)
+        refGames.child("games/xoxo/\(index)/playerTwoUid").setValue(uid)
         performSegue(withIdentifier: "goToGame", sender: self)
     }
     

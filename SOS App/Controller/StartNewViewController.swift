@@ -24,7 +24,7 @@ class StartNewViewController: UIViewController {
         
         SVProgressHUD.show()
         refGames = Database.database().reference()
-        refGames.child("games/sos").observeSingleEvent(of: .value) { (snapshot1) in
+        refGames.child("games/xoxo").observeSingleEvent(of: .value) { (snapshot1) in
             
             let value1 = snapshot1.value as! NSArray
             let count : Int = value1.count
@@ -39,12 +39,13 @@ class StartNewViewController: UIViewController {
             newGame["playerOneUid"] = playerOneUid
             newGame["playerTwoUid"] = "nil"
             newGame["roomNumber"] = String(self.roomNumber)
+            newGame["moves"] = ""
             
             value1.adding(newGame)
             
-            self.refGames.child("games/sos/\(count)").updateChildValues(newGame)
+            self.refGames.child("games/xoxo/\(count)").updateChildValues(newGame)
             
-            self.refGames.child("games/sos/\(count)").observe(DataEventType.value, with: { (snapshot2) in
+            self.refGames.child("games/xoxo/\(count)").observe(DataEventType.value, with: { (snapshot2) in
                 let value2 = snapshot2.value as! NSDictionary
                 let playerTwoUid : String = value2["playerTwoUid"] as! String
                 

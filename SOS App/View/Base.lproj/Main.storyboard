@@ -440,11 +440,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="board" destination="JwV-tM-6Th" id="Iaf-Ci-TxB"/>
-                        <outlet property="output" destination="L9z-GI-nhz" id="JKp-fD-g7B"/>
-                        <outlet property="playOneScoreLabel" destination="lNt-Ns-fiT" id="Oag-Aj-KHn"/>
+                        <outlet property="playOneTypeLabel" destination="lNt-Ns-fiT" id="Oag-Aj-KHn"/>
                         <outlet property="playerOneNameLabel" destination="bFk-AE-HmE" id="s86-O8-7cz"/>
                         <outlet property="playerTwoNameLabel" destination="jY6-4X-Btx" id="GWd-x4-eX4"/>
-                        <outlet property="playerTwoScoreLabel" destination="2Nb-lc-nFy" id="Njk-5x-UdR"/>
+                        <outlet property="playerTwoTypeLabel" destination="2Nb-lc-nFy" id="Njk-5x-UdR"/>
+                        <outlet property="statusBarLabel" destination="L9z-GI-nhz" id="JKp-fD-g7B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToR-qh-eHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
