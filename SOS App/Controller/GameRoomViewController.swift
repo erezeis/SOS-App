@@ -164,7 +164,7 @@ class GameRoomViewController: UIViewController {
     
     @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
         if isGameOver {
-                return
+            return
         }
         
         let alert = UIAlertController(title: "Cancel game", message: "Are you sure?", preferredStyle: .alert)
@@ -324,7 +324,7 @@ class GameRoomViewController: UIViewController {
     func declareWinner(winner : String){
         gameOverLabel.text = "GAME OVER"
         if playerType==winner {
-                statusBarLabel.text = "Oh yeah! \(winner) wins!!"
+            statusBarLabel.text = "Oh yeah! \(winner) wins!!"
         } else {
             statusBarLabel.text = "Oh no... \(winner) won"
         }
@@ -403,32 +403,29 @@ class GameRoomViewController: UIViewController {
             return
         }
         
+        isWaiting = true
+        var name : String = ""
+        var key : String = "nil"
         if playerNumber==1 {
-            isWaiting = true
-            let name : String = playerTwoNameLabel.text!
-            rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
-            refGames.child("games/xoxo/\(index)/rematch1").setValue("yes")
-            self.refGames.child("games/xoxo/\(index)/rematch2").observe(DataEventType.value, with: { (snapshot) in
-                let value = snapshot.value as! NSString
-                let rematch2 : String = String("\(value)")
-                if rematch2=="yes"{
-                    self.resetGame()
-                }
-            })
-            
+            name = playerTwoNameLabel.text!
+            key = "rematch1"
         } else if playerNumber==2 {
-            isWaiting = true
-            let name : String = playerOneNameLabel.text!
-            rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
-            refGames.child("games/xoxo/\(index)/rematch2").setValue("yes")
-            self.refGames.child("games/xoxo/\(index)/rematch1").observe(DataEventType.value, with: { (snapshot) in
-                let value = snapshot.value as! NSString
-                let rematch1 : String = String("\(value)")
-                if rematch1=="yes"{
-                    self.resetGame()
-                }
-            })
+            name = playerOneNameLabel.text!
+            key = "rematch2"
         }
+        rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
+        refGames.child("games/xoxo/\(index)/\(key)").setValue("yes")
+        
+        refGames.child("games/xoxo/\(index)").observe(DataEventType.value, with: { (snapshot) in
+            
+            let value : NSDictionary = (snapshot.value as? NSDictionary)!
+            let rematch1 : String = value["rematch1"] as! String
+            let rematch2 : String = value["rematch2"] as! String
+            let cond : Bool = rematch1=="yes" && rematch2=="yes"
+            if cond {
+                self.resetGame()
+            }
+        })
     }
     
     func resetGame(){
