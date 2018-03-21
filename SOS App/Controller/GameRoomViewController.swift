@@ -41,7 +41,7 @@ class GameRoomViewController: UIViewController {
     var moves : String = ""
     
     let myUid : String = (Auth.auth().currentUser?.uid)!
-    var roomNumber : Int = 11111 // DONT FORGET TO REMOVE THIS!!!!!
+    var roomNumber : Int = -1 
     
     override func viewDidLoad() {
         super.viewDidLoad()

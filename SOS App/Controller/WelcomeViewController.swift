@@ -21,8 +21,8 @@ class WelcomeViewController: UIViewController {
         
         let user = Auth.auth().currentUser
         if user != nil {
-            //performSegue(withIdentifier: "goToMainMenu", sender: self)
-            performSegue(withIdentifier: "goToGameButDontForgetToRemoveThisBeforeFinishing", sender: self)
+            performSegue(withIdentifier: "goToMainMenu", sender: self)
+            //performSegue(withIdentifier: "goToGameButDontForgetToRemoveThisBeforeFinishing", sender: self)
         }
     }
     
