@@ -45,6 +45,8 @@ class GameRoomViewController: UIViewController {
     let myUid : String = (Auth.auth().currentUser?.uid)!
     var roomNumber : Int = -1 
     
+    @IBOutlet weak var rematchButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
@@ -193,8 +195,9 @@ class GameRoomViewController: UIViewController {
         isTurnToPlay = false
         let key : String = "\(sender.tag)"
         buttons[key]?.setTitle(playerType, for: .normal)
-        checkForWin()
-        addMove(tag: sender.tag)
+        let win : Bool = checkForWin()
+        print("checkForWin=\(win)")
+        addMoveToDB(tag: sender.tag)
     }
     
     func updateMoves(moves : String) {
@@ -332,7 +335,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func postGame(){
-        isGameOver = true
+        setGameIsOver()
         self.navigationItem.setRightBarButton(nil, animated: false)
         
         //self.navigationItem.backBarButtonItem?.action = #selector(goBackToMainMenu)
@@ -340,13 +343,13 @@ class GameRoomViewController: UIViewController {
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
     
-    func addMove(tag: Int){
+    func addMoveToDB(tag: Int){
         let index : Int = roomNumber/10000
         refGames.child("games/xoxo/\(index)/moves").setValue("\(moves)\(tag)")
     }
     
     func gameCanceledByMe(){
-        isGameOver = true
+        setGameIsOver()
         let index : Int = roomNumber/10000
         refGames.child("games/xoxo/\(index)/gameStatus").setValue("Game canceled by \(playerNumber)")
         refGames.removeAllObservers()
@@ -354,7 +357,7 @@ class GameRoomViewController: UIViewController {
     }
     
     func gameCanceledByOtherPlayer(){
-        isGameOver = true
+        setGameIsOver()
         var name : String = playerOneNameLabel.text!
         if playerNumber==1 {
             name = playerTwoNameLabel.text!
@@ -379,6 +382,16 @@ class GameRoomViewController: UIViewController {
         let cond : Bool = (playerNumber==1 && status=="Game canceled by 2") || (playerNumber==2 && status=="Game canceled by 1")
         if cond {
             self.gameCanceledByOtherPlayer()
+        }
+    }
+    
+    func setGameIsOver(){
+        isGameOver = true
+    }
+    
+    @IBAction func rematchButtonPressed(_ sender: UIButton) {
+        guard isGameOver else {
+            return
         }
     }
 }
