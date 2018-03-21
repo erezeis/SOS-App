@@ -158,12 +158,17 @@ class GameRoomViewController: UIViewController {
     func updateMoves(moves : String) {
         let n : Int = moves.count
         var type : String = ""
-        for i in 0..<n{
-            type = i%2==0 ? "X" : "O"
-            
-            let index = moves.index(moves.startIndex, offsetBy: i)
-            let key : String = "\(moves[index])"
-            buttons[key]?.setTitle(type, for: .normal)
+        
+        if n==0 {
+            type = "O"
+        } else {
+            for i in 0..<n{
+                type = i%2==0 ? "X" : "O"
+                
+                let index = moves.index(moves.startIndex, offsetBy: i)
+                let key : String = "\(moves[index])"
+                buttons[key]?.setTitle(type, for: .normal)
+            }
         }
         
         switch playerNumber {
