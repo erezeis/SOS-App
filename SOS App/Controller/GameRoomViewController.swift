@@ -435,7 +435,7 @@ class GameRoomViewController: UIViewController {
         if playerNumber==1{
             refGames.child("games/xoxo/\(index)/rematch1").setValue("no")
             refGames.child("games/xoxo/\(index)/rematch2").setValue("no")
-            refGames.child("games/xoxo/\(index)/rematch1").setValue("Game started")
+            refGames.child("games/xoxo/\(index)/gameStatus").setValue("Game started")
             refGames.child("games/xoxo/\(index)/moves").setValue("")
         }
         setUpButtons()
