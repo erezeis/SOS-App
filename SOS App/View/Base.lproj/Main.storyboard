@@ -11,6 +11,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
         </array>
@@ -64,8 +67,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To SOS App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o91-9h-iDz">
-                                <rect key="frame" x="64.000000000000014" y="391.33333333333331" width="247.33333333333337" height="29.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To X.O.X.O App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o91-9h-iDz">
+                                <rect key="frame" x="45" y="391.33333333333331" width="285.33333333333331" height="29.333333333333314"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -85,7 +88,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Welcome To S.O.S App" id="E9G-Yn-8in">
+                    <navigationItem key="navigationItem" title="X.O.X.O App" id="E9G-Yn-8in">
                         <barButtonItem key="backBarButtonItem" title="Back" id="9Ji-HW-Rhq"/>
                     </navigationItem>
                     <connections>
@@ -162,7 +165,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C3A-2t-WgD"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up S.O.S App" id="oD4-iS-Gmh">
+                    <navigationItem key="navigationItem" title="Sign Up X.O.X.O App" id="oD4-iS-Gmh">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zbw-1f-Y7Q"/>
                     </navigationItem>
                     <connections>
@@ -362,10 +365,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="gby-ew-Ids">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dX7-I6-5mU">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dX7-I6-5mU" userLabel="Players Board">
                                 <rect key="frame" x="32" y="156" width="311" height="46.666666666666657"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-wY-Lc6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-wY-Lc6" userLabel="Player 1">
                                         <rect key="frame" x="0.0" y="0.0" width="155.66666666666666" height="46.666666666666664"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFk-AE-HmE">
@@ -382,7 +385,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CIr-MV-PKz">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="CIr-MV-PKz" userLabel="Player 2">
                                         <rect key="frame" x="155.66666666666663" y="0.0" width="155.33333333333337" height="46.666666666666664"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-4X-Btx">
@@ -401,14 +404,130 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9z-GI-nhz">
-                                <rect key="frame" x="32" y="609.33333333333337" width="311" height="152.66666666666663"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9z-GI-nhz">
+                                <rect key="frame" x="32" y="692" width="311" height="70"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JwV-tM-6Th">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JwV-tM-6Th">
                                 <rect key="frame" x="0.0" y="218.66666666666666" width="375" height="374.66666666666674"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D32-cg-Jdf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlE-Tz-fPe">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="GH4-CY-L5Q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdh-PV-9w5">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="6Qy-Zu-w2d"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zkp-oN-m2i">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="uPs-0o-ZHA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nbx-lJ-XKO">
+                                        <rect key="frame" x="0.0" y="125.00000000000003" width="375" height="124.66666666666666"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmi-uT-W1o">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="124.66666666666667"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="JXR-E9-4Gv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQ1-7o-qI4">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="124.66666666666667"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="DTg-SU-hAn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-Vu-Vm7">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="124.66666666666667"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="W5z-ng-Wuq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RRK-ks-8EQ">
+                                        <rect key="frame" x="0.0" y="249.66666666666663" width="375" height="125"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmH-6P-v4L">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="dvJ-PG-Lql"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFw-5t-ANB">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="hWu-FR-ukv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w53-Yc-WPk">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="125"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
+                                                <state key="normal" title="X">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="gameButtonPressed:" destination="sYR-Ou-YIp" eventType="touchUpInside" id="p77-kW-Vxu"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -431,7 +550,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hqw-lU-cwA"/>
                     </view>
-                    <navigationItem key="navigationItem" title="S.O.S App" id="ppf-2A-XMz">
+                    <navigationItem key="navigationItem" title="X.O.X.O App" id="ppf-2A-XMz">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="Fis-dL-3vh">
                             <connections>
                                 <action selector="cancelGameButtonPressed:" destination="sYR-Ou-YIp" id="qiU-wW-Ac3"/>
@@ -440,6 +559,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="board" destination="JwV-tM-6Th" id="Iaf-Ci-TxB"/>
+                        <outlet property="button1" destination="zlE-Tz-fPe" id="3qn-GH-Oa7"/>
+                        <outlet property="button2" destination="Cdh-PV-9w5" id="ukZ-kw-B0m"/>
+                        <outlet property="button3" destination="Zkp-oN-m2i" id="mnZ-tR-bcm"/>
+                        <outlet property="button4" destination="Zmi-uT-W1o" id="sXU-fH-Mgm"/>
+                        <outlet property="button5" destination="UQ1-7o-qI4" id="HVd-vf-zsJ"/>
+                        <outlet property="button6" destination="Zz6-Vu-Vm7" id="1xy-Pn-7vd"/>
+                        <outlet property="button7" destination="WmH-6P-v4L" id="hP2-zo-Iqx"/>
+                        <outlet property="button8" destination="PFw-5t-ANB" id="Q2G-uv-iY3"/>
+                        <outlet property="button9" destination="w53-Yc-WPk" id="8ZX-FK-E5z"/>
                         <outlet property="playOneTypeLabel" destination="lNt-Ns-fiT" id="Oag-Aj-KHn"/>
                         <outlet property="playerOneNameLabel" destination="bFk-AE-HmE" id="s86-O8-7cz"/>
                         <outlet property="playerTwoNameLabel" destination="jY6-4X-Btx" id="GWd-x4-eX4"/>
@@ -585,7 +713,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UQq-cP-My1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Log In S.O.S App" id="9Do-TH-rtM">
+                    <navigationItem key="navigationItem" title="Log In X.O.X.O App" id="9Do-TH-rtM">
                         <barButtonItem key="backBarButtonItem" title="Back" id="q9Q-Uz-5hZ"/>
                     </navigationItem>
                     <connections>
