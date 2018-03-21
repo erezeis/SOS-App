@@ -38,6 +38,7 @@ class GameRoomViewController: UIViewController {
     var playerNumber : Int = -1
     var playerType : String = ""
     var isTurnToPlay : Bool = false
+    var isGameOver : Bool = false
     var moves : String = ""
     
     let myUid : String = (Auth.auth().currentUser?.uid)!
@@ -49,6 +50,7 @@ class GameRoomViewController: UIViewController {
         
         self.title = "X.O.X.O App #\(roomNumber)"
         isTurnToPlay = false
+        isGameOver = false
         setUpButtons()
         
         refGames = Database.database().reference()
@@ -134,6 +136,10 @@ class GameRoomViewController: UIViewController {
     
     @IBAction func gameButtonPressed(_ sender: UIButton) {
         guard isTurnToPlay else {
+            return
+        }
+        
+        guard !isGameOver else {
             return
         }
         
@@ -253,6 +259,7 @@ class GameRoomViewController: UIViewController {
     
     func declareWinner(winner : String){
         statusBarLabel.text = "\(winner) wins!!"
+        isGameOver = true
     }
     
     func addMove(tag: Int){
