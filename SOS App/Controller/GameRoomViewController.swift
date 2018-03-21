@@ -48,7 +48,7 @@ class GameRoomViewController: UIViewController {
         super.viewDidLoad()
         SVProgressHUD.show()
         
-        self.title = "X.O.X.O App #\(roomNumber)"
+        self.title = "#\(roomNumber)"
         isTurnToPlay = false
         isGameOver = false
         setUpButtons()
@@ -124,23 +124,42 @@ class GameRoomViewController: UIViewController {
                 let value2 : NSDictionary = (snapshot2.value as? NSDictionary)!
                 let displayName : String = value2["displayName"] as! String
                 self.playerOneNameLabel.text = displayName
+                self.makeSureNamesAreNotTheSame()
             }
             
             self.refGames.child("users/\(playerTwoUid)").observeSingleEvent(of: .value) { (snapshot2) in
                 let value2 : NSDictionary = (snapshot2.value as? NSDictionary)!
                 let displayName : String = value2["displayName"] as! String
                 self.playerTwoNameLabel.text = displayName
+                self.makeSureNamesAreNotTheSame()
             }
             
             self.postPlayersSetup()
         }
     }
     
+    func makeSureNamesAreNotTheSame(){
+        let name1 : String = self.playerOneNameLabel.text!
+        let name2 : String = self.playerTwoNameLabel.text!
+        
+        if name1 != "" && name1==name2 {
+            if playerNumber==1 {
+                self.playerOneNameLabel.text = "\(name1) (you)"
+            } else if playerNumber==2 {
+                self.playerTwoNameLabel.text = "\(name2) (you)"
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
+        if isGameOver {
+                return
+        }
+        
         let alert = UIAlertController(title: "Cancel game", message: "Are you sure?", preferredStyle: .alert)
         
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action) in
@@ -183,7 +202,7 @@ class GameRoomViewController: UIViewController {
             isTurnToPlay = playerNumber==1
             SVProgressHUD.dismiss()
             return
-        }        
+        }
         
         let n : Int = moves.count
         
@@ -289,8 +308,18 @@ class GameRoomViewController: UIViewController {
     }
     
     func declareWinner(winner : String){
-        statusBarLabel.text = "\(winner) wins!!"
+        if playerType==winner {
+                statusBarLabel.text = "Oh yeah! \(winner) wins!!"
+        } else {
+            statusBarLabel.text = "Oh no... \(winner) won"
+        }
+        
         isGameOver = true
+        self.navigationItem.setRightBarButton(nil, animated: false)
+        
+        self.navigationItem.backBarButtonItem?.action = #selector(goBackToMainMenu)
+        self.navigationItem.backBarButtonItem?.title = "Main Menu"
+        self.navigationItem.setHidesBackButton(false, animated: false)
     }
     
     func addMove(tag: Int){
@@ -324,7 +353,7 @@ class GameRoomViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func goBackToMainMenu(){
+    @objc func goBackToMainMenu(){
         self.performSegue(withIdentifier: "goBackToMainMenu", sender: self)
     }
     
