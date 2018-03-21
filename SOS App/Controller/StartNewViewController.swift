@@ -73,6 +73,13 @@ class StartNewViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("StartNewViewController --> viewDidAppear")
+        if isGameStated {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         print("StartNewViewController --> viewWillAppear")
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -105,6 +112,6 @@ class StartNewViewController: UIViewController {
         
         isGameStated = true
         self.refGames.removeAllObservers()
-        performSegue(withIdentifier: "goToGame", sender: self)        
+        performSegue(withIdentifier: "goToGame", sender: self)
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-
 class JoinExistingViewController: UIViewController {
     
     @IBOutlet weak var roomTextField: UITextField!
@@ -18,11 +17,19 @@ class JoinExistingViewController: UIViewController {
     
     var refGames : DatabaseReference!
     var roomNumber : Int = -1
+    var isGameStated : Bool = false
     
     override func viewDidLoad() {
         print("JoinExistingViewController --> viewDidLoad")
         super.viewDidLoad()
-    }    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("JoinExistingViewController --> viewDidAppear")
+        if isGameStated {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         print("JoinExistingViewController --> buttonPressed")
@@ -54,6 +61,9 @@ class JoinExistingViewController: UIViewController {
         refGames = Database.database().reference()
         SVProgressHUD.show()
         refGames.child("games/xoxo/\(i)").observeSingleEvent(of: .value) { (snapshot) in
+            guard !self.isGameStated else {
+                return
+            }
             
             //Get Dictionary from FireBase
             guard let value : NSDictionary = snapshot.value as? NSDictionary else {
@@ -107,6 +117,7 @@ class JoinExistingViewController: UIViewController {
         refGames = Database.database().reference()
         refGames.child("games/xoxo/\(index)/gameStatus").setValue("Room joined")
         refGames.child("games/xoxo/\(index)/playerTwoUid").setValue(uid)
+        isGameStated = true
         performSegue(withIdentifier: "goToGame", sender: self)
         refGames.removeAllObservers()
     }
