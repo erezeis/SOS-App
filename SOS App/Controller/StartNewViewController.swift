@@ -91,6 +91,7 @@ class StartNewViewController: UIViewController {
     
     func notifyPlayerTwoJoined(roomNumber: Int) {
         print("StartNewViewController --> notifyPlayerTwoJoined")
+        self.refGames.removeAllObservers()
         performSegue(withIdentifier: "goToGame", sender: self)
         
     }

@@ -242,57 +242,63 @@ class GameRoomViewController: UIViewController {
         }
         
         SVProgressHUD.dismiss()
-        checkForWin()
+        let winnerDeclared : Bool = checkForWin()
+        let cond : Bool = !winnerDeclared && n>=9
+        if cond {
+            declareNoWinner()
+        }
     }
     
-    func checkForWin(){
+    func checkForWin() -> Bool {
         var winnerType : String = getWinnerType(key1: "1", key2: "2", key3: "3")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "4", key2: "5", key3: "6")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "7", key2: "8", key3: "9")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "1", key2: "4", key3: "7")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "2", key2: "5", key3: "8")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "3", key2: "6", key3: "9")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "1", key2: "5", key3: "9")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
         
         winnerType = getWinnerType(key1: "3", key2: "5", key3: "7")
         if winnerType != "" {
             declareWinner(winner: winnerType)
-            return
+            return true
         }
+        
+        return false
     }
     
     func getWinnerType(key1 : String, key2 : String, key3 : String) -> String {
@@ -314,6 +320,15 @@ class GameRoomViewController: UIViewController {
             statusBarLabel.text = "Oh no... \(winner) won"
         }
         
+        postGame()
+    }
+    
+    func declareNoWinner(){
+        statusBarLabel.text = "It's a Tied Game"
+        postGame()
+    }
+    
+    func postGame(){
         isGameOver = true
         self.navigationItem.setRightBarButton(nil, animated: false)
         
