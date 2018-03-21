@@ -53,7 +53,9 @@ class GameRoomViewController: UIViewController {
         isGameOver = false
         setUpButtons()
         setUpPlayers()
-        
+    }
+    
+    func postPlayersSetup(){
         let index : Int = roomNumber/10000
         self.refGames.child("games/xoxo/\(index)/moves").observe(DataEventType.value, with: { (snapshot) in
             let moves = snapshot.value as! NSString
@@ -129,6 +131,8 @@ class GameRoomViewController: UIViewController {
                 let displayName : String = value2["displayName"] as! String
                 self.playerTwoNameLabel.text = displayName
             }
+            
+            self.postPlayersSetup()
         }
     }
     
@@ -174,20 +178,23 @@ class GameRoomViewController: UIViewController {
     }
     
     func updateMoves(moves : String) {
+        if moves=="" {
+            statusBarLabel.text = "It is X turn to play"
+            isTurnToPlay = playerNumber==1
+            SVProgressHUD.dismiss()
+            return
+        }        
+        
         let n : Int = moves.count
         
         var type : String = "X"
         
-        if n==0 {
-            type = "O"
-        } else {
-            for i in 0..<n{
-                type = i%2==0 ? "X" : "O"
-                
-                let index = moves.index(moves.startIndex, offsetBy: i)
-                let key : String = "\(moves[index])"
-                buttons[key]?.setTitle(type, for: .normal)
-            }
+        for i in 0..<n{
+            type = i%2==0 ? "X" : "O"
+            
+            let index = moves.index(moves.startIndex, offsetBy: i)
+            let key : String = "\(moves[index])"
+            buttons[key]?.setTitle(type, for: .normal)
         }
         
         switch playerNumber {
@@ -321,8 +328,7 @@ class GameRoomViewController: UIViewController {
         self.performSegue(withIdentifier: "goBackToMainMenu", sender: self)
     }
     
-    func onStatusChanged(status : String){
-        print("status=\(status)")
+    func onStatusChanged(status : String) {
         let cond : Bool = (playerNumber==1 && status=="Game canceled by 2") || (playerNumber==2 && status=="Game canceled by 1")
         if cond {
             self.gameCanceledByOtherPlayer()
