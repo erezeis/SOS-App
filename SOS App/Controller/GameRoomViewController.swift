@@ -332,8 +332,8 @@ class GameRoomViewController: UIViewController {
         isGameOver = true
         self.navigationItem.setRightBarButton(nil, animated: false)
         
-        self.navigationItem.backBarButtonItem?.action = #selector(goBackToMainMenu)
-        self.navigationItem.backBarButtonItem?.title = "Main Menu"
+        //self.navigationItem.backBarButtonItem?.action = #selector(goBackToMainMenu)
+        //self.navigationItem.backBarButtonItem?.title = "Main Menu"
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
     
