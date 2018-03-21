@@ -392,6 +392,31 @@ class GameRoomViewController: UIViewController {
         rematchButton.setTitle("Click here for a rematch", for: .normal)
         rematchButton.backgroundColor = UIColor.white
         rematchButton.tintColor = UIColor.black
+        
+        refGames.child("games/xoxo/\(index)").observe(DataEventType.value, with: { (snapshot) in
+            
+            let value : NSDictionary = (snapshot.value as? NSDictionary)!
+            let rematch1 : String = value["rematch1"] as! String
+            let rematch2 : String = value["rematch2"] as! String
+            let cond : Bool = rematch1=="yes" && rematch2=="yes"
+            if cond {
+                self.resetGame()
+            }
+            
+            var name : String = ""
+            let cond3: Bool = self.playerNumber==1 && rematch2=="yes"
+            if cond3 {
+                name = self.playerTwoNameLabel.text!
+            }
+            let cond2 : Bool = self.playerNumber==2 && rematch1=="yes"
+            if cond2 {
+                name = self.playerTwoNameLabel.text!
+            }
+            if name != "" {
+               self.rematchButton.setTitle("\(name) wants a rematch,\nClick here to accpent", for: .normal)
+            }
+        })
+        
     }
     
     @IBAction func rematchButtonPressed(_ sender: UIButton) {
@@ -415,17 +440,6 @@ class GameRoomViewController: UIViewController {
         }
         rematchButton.setTitle("Waiting for \(name) to accept", for: .normal)
         refGames.child("games/xoxo/\(index)/\(key)").setValue("yes")
-        
-        refGames.child("games/xoxo/\(index)").observe(DataEventType.value, with: { (snapshot) in
-            
-            let value : NSDictionary = (snapshot.value as? NSDictionary)!
-            let rematch1 : String = value["rematch1"] as! String
-            let rematch2 : String = value["rematch2"] as! String
-            let cond : Bool = rematch1=="yes" && rematch2=="yes"
-            if cond {
-                self.resetGame()
-            }
-        })
     }
     
     func resetGame(){
