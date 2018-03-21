@@ -13,6 +13,7 @@ import SVProgressHUD
 class StartNewViewController: UIViewController {
     
     @IBOutlet weak var roomNumberLabel: UILabel!
+    @IBOutlet weak var statusBar: UILabel!
     
     var refGames : DatabaseReference!
     var roomNumber : Int = -1
@@ -31,6 +32,7 @@ class StartNewViewController: UIViewController {
             
             self.roomNumber = Int(count * 10000) + Int(arc4random_uniform(10000))
             self.roomNumberLabel.text = String(self.roomNumber)
+            self.statusBar.text = "Waiting for Player Two to join..."
             SVProgressHUD.dismiss()
             
             //TODO: - add animation for waiting to player two
@@ -38,6 +40,7 @@ class StartNewViewController: UIViewController {
             var newGame : [String : String] = [String : String]()
             newGame["playerOneUid"] = playerOneUid
             newGame["playerTwoUid"] = "nil"
+            newGame["gameStatus"] = "Room opened"
             newGame["roomNumber"] = String(self.roomNumber)
             newGame["moves"] = ""
             
@@ -47,9 +50,12 @@ class StartNewViewController: UIViewController {
             
             self.refGames.child("games/xoxo/\(count)").observe(DataEventType.value, with: { (snapshot2) in
                 let value2 = snapshot2.value as! NSDictionary
+                let status : String = value2["gameStatus"] as! String
                 let playerTwoUid : String = value2["playerTwoUid"] as! String
+                                
+                let cond : Bool = (playerTwoUid != "nil") && (status != "Game canceled by 1") && (status != "Game canceled by 2")
                 
-                if playerTwoUid != "nil" {
+                if cond {
                     if playerOneUid != playerTwoUid {
                         self.notifyPlayerTwoJoined(roomNumber: self.roomNumber)
                     }
@@ -83,5 +89,6 @@ class StartNewViewController: UIViewController {
     
     func notifyPlayerTwoJoined(roomNumber: Int) {
         performSegue(withIdentifier: "goToGame", sender: self)
+
     }
 }

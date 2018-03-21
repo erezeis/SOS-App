@@ -102,8 +102,10 @@ class JoinExistingViewController: UIViewController {
     func onMatch(index: Int, uid: String){
         SVProgressHUD.dismiss()
         refGames = Database.database().reference()
+        refGames.child("games/xoxo/\(index)/gameStatus").setValue("Room joined")
         refGames.child("games/xoxo/\(index)/playerTwoUid").setValue(uid)
         performSegue(withIdentifier: "goToGame", sender: self)
+        refGames.removeAllObservers()
     }
     
     func displayError(title : String, msg : String) {

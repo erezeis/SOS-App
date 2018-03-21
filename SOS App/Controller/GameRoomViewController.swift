@@ -24,7 +24,7 @@ class GameRoomViewController: UIViewController {
     
     var buttons : [String : UIButton] = [String : UIButton]()
     
-    var refGames : DatabaseReference!
+    var refGames : DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var board: UIStackView!
     
@@ -52,16 +52,23 @@ class GameRoomViewController: UIViewController {
         isTurnToPlay = false
         isGameOver = false
         setUpButtons()
-        
-        refGames = Database.database().reference()
         setUpPlayers()
         
         let index : Int = roomNumber/10000
-        self.refGames.child("games/xoxo/\(index)").observe(DataEventType.value, with: { (snapshot) in
-            let value = snapshot.value as! NSDictionary
-            let moves : String = value["moves"] as! String
-            self.moves = moves
-            self.updateMoves(moves: moves)
+        self.refGames.child("games/xoxo/\(index)/moves").observe(DataEventType.value, with: { (snapshot) in
+            let moves = snapshot.value as! NSString
+            self.moves = String("\(moves)")
+            self.updateMoves(moves: self.moves)
+        })
+        
+        if playerNumber==1 {
+            refGames.child("games/xoxo/\(index)/gameStatus").setValue("Game started")
+        }
+        
+        self.refGames.child("games/xoxo/\(index)/gameStatus").observe(DataEventType.value, with: { (snapshot) in
+            let value = snapshot.value as! NSString
+            let status : String = String("\(value)")
+            self.onStatusChanged(status: status)
         })
     }
     
@@ -130,8 +137,19 @@ class GameRoomViewController: UIViewController {
     }
     
     @IBAction func cancelGameButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Cancel game", message: "Are you sure?", preferredStyle: .alert)
         
-        //TODO - Prompt: are you sure?
+        let actionYes = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+            self.gameCanceledByMe()
+        }
+        let actionNo = UIAlertAction(title: "No", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(actionYes)
+        alert.addAction(actionNo)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func gameButtonPressed(_ sender: UIButton) {
@@ -157,7 +175,8 @@ class GameRoomViewController: UIViewController {
     
     func updateMoves(moves : String) {
         let n : Int = moves.count
-        var type : String = ""
+        
+        var type : String = "X"
         
         if n==0 {
             type = "O"
@@ -270,5 +289,43 @@ class GameRoomViewController: UIViewController {
     func addMove(tag: Int){
         let index : Int = roomNumber/10000
         refGames.child("games/xoxo/\(index)/moves").setValue("\(moves)\(tag)")
+    }
+    
+    func gameCanceledByMe(){
+        isGameOver = true
+        let index : Int = roomNumber/10000
+        refGames.child("games/xoxo/\(index)/gameStatus").setValue("Game canceled by \(playerNumber)")
+        refGames.removeAllObservers()
+        goBackToMainMenu()
+    }
+    
+    func gameCanceledByOtherPlayer(){
+        isGameOver = true
+        var name : String = playerOneNameLabel.text!
+        if playerNumber==1 {
+            name = playerTwoNameLabel.text!
+        }
+        
+        let alert = UIAlertController(title: "Room closed", message: "\(name) has left the room. Press 'OK' to return to Main Menu.", preferredStyle: .alert)
+        
+        let actionOK = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+            self.goBackToMainMenu()
+        }
+        
+        alert.addAction(actionOK)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func goBackToMainMenu(){
+        self.performSegue(withIdentifier: "goBackToMainMenu", sender: self)
+    }
+    
+    func onStatusChanged(status : String){
+        print("status=\(status)")
+        let cond : Bool = (playerNumber==1 && status=="Game canceled by 2") || (playerNumber==2 && status=="Game canceled by 1")
+        if cond {
+            self.gameCanceledByOtherPlayer()
+        }
     }
 }

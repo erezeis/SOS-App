@@ -95,7 +95,6 @@
                         <segue destination="bLs-bh-1Eh" kind="push" identifier="goToLogin" id="ZED-qj-q5g"/>
                         <segue destination="g02-AD-gYR" kind="push" identifier="goToRegister" id="pCc-6i-w5A"/>
                         <segue destination="17J-uO-uTN" kind="push" identifier="goToMainMenu" id="ukB-co-0K5"/>
-                        <segue destination="sYR-Ou-YIp" kind="push" identifier="goToGameButDontForgetToRemoveThisBeforeFinishing" id="wpd-qf-PTS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -192,7 +191,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are Logged in as: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipY-FJ-Yyh">
-                                <rect key="frame" x="16" y="156" width="343" height="23.333333333333343"/>
+                                <rect key="frame" x="16" y="60.000000000000007" width="343" height="23.333333333333336"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -268,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JKQ-aT-1fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1630.5" y="181"/>
+            <point key="canvasLocation" x="1658" y="181"/>
         </scene>
         <!--Join existing-->
         <scene sceneID="zvu-bx-W0z">
@@ -282,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="N6H-0Q-Ldy">
-                                <rect key="frame" x="16" y="230.00000000000003" width="343" height="78.333333333333343"/>
+                                <rect key="frame" x="16" y="134" width="343" height="78.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter room number:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWo-mb-4KJ">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="29.333333333333332"/>
@@ -291,7 +290,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7rE-rd-bpZ">
-                                        <rect key="frame" x="16" y="39.333333333333314" width="311" height="39"/>
+                                        <rect key="frame" x="16" y="39.333333333333343" width="311" height="39"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                         <textInputTraits key="textInputTraits" textContentType="tel"/>
@@ -352,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZj-CU-7rA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2233" y="874"/>
+            <point key="canvasLocation" x="2408" y="782"/>
         </scene>
         <!--Game S.O.S-->
         <scene sceneID="9wS-eh-qMJ">
@@ -366,7 +365,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dX7-I6-5mU" userLabel="Players Board">
-                                <rect key="frame" x="32" y="156" width="311" height="46.666666666666657"/>
+                                <rect key="frame" x="32" y="60" width="311" height="46.666666666666657"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QJM-wY-Lc6" userLabel="Player 1">
                                         <rect key="frame" x="0.0" y="0.0" width="155.66666666666666" height="46.666666666666664"/>
@@ -378,7 +377,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNt-Ns-fiT">
-                                                <rect key="frame" x="0.0" y="23.333333333333343" width="155.66666666666666" height="23.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="23.333333333333329" width="155.66666666666666" height="23.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -395,7 +394,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nb-lc-nFy">
-                                                <rect key="frame" x="0.0" y="23.333333333333343" width="155.33333333333334" height="23.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="23.333333333333329" width="155.33333333333334" height="23.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -411,13 +410,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JwV-tM-6Th">
-                                <rect key="frame" x="0.0" y="218.66666666666666" width="375" height="374.66666666666674"/>
+                                <rect key="frame" x="0.0" y="122.66666666666669" width="375" height="566.66666666666652"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D32-cg-Jdf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="189"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zlE-Tz-fPe">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -428,7 +427,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cdh-PV-9w5">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -439,7 +438,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zkp-oN-m2i">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -452,10 +451,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nbx-lJ-XKO">
-                                        <rect key="frame" x="0.0" y="125.00000000000003" width="375" height="124.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="189" width="375" height="188.66666666666663"/>
                                         <subviews>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmi-uT-W1o">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="124.66666666666667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="188.66666666666666"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -466,7 +465,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQ1-7o-qI4">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="124.66666666666667"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="188.66666666666666"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -477,7 +476,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zz6-Vu-Vm7">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="124.66666666666667"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="188.66666666666666"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -490,10 +489,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RRK-ks-8EQ">
-                                        <rect key="frame" x="0.0" y="249.66666666666663" width="375" height="125"/>
+                                        <rect key="frame" x="0.0" y="377.66666666666663" width="375" height="189"/>
                                         <subviews>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmH-6P-v4L">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -504,7 +503,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFw-5t-ANB">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -515,7 +514,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w53-Yc-WPk">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="125"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="189"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="40"/>
                                                 <state key="normal" title="X">
@@ -573,11 +572,12 @@
                         <outlet property="playerTwoNameLabel" destination="jY6-4X-Btx" id="GWd-x4-eX4"/>
                         <outlet property="playerTwoTypeLabel" destination="2Nb-lc-nFy" id="Njk-5x-UdR"/>
                         <outlet property="statusBarLabel" destination="L9z-GI-nhz" id="JKp-fD-g7B"/>
+                        <segue destination="17J-uO-uTN" kind="push" identifier="goBackToMainMenu" id="scG-c5-yOw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ToR-qh-eHo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815.5" y="381"/>
+            <point key="canvasLocation" x="3111" y="181"/>
         </scene>
         <!--Start new-->
         <scene sceneID="LMM-BL-1z9">
@@ -591,19 +591,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready player one" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7E-eB-kXY">
-                                <rect key="frame" x="16" y="156" width="343" height="23.333333333333343"/>
+                                <rect key="frame" x="16" y="60.000000000000007" width="343" height="23.333333333333336"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for player two" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6a-OW-1Ot">
-                                <rect key="frame" x="90.999999999999986" y="654.66666666666663" width="194.66666666666663" height="23.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room will be open shortly..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6a-OW-1Ot">
+                                <rect key="frame" x="64.666666666666671" y="654.66666666666663" width="247.66666666666663" height="23.333333333333371"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oa7-T6-nOe">
-                                <rect key="frame" x="16" y="229.33333333333334" width="343" height="74.333333333333343"/>
+                                <rect key="frame" x="16" y="133.33333333333334" width="343" height="74.333333333333343"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your room number is:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPT-Xq-mHK">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="29.333333333333332"/>
@@ -612,7 +612,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yck-fh-api">
-                                        <rect key="frame" x="0.0" y="39.333333333333343" width="343" height="35"/>
+                                        <rect key="frame" x="0.0" y="39.333333333333314" width="343" height="35"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -649,12 +649,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="roomNumberLabel" destination="Yck-fh-api" id="aWM-L9-4D6"/>
+                        <outlet property="statusBar" destination="X6a-OW-1Ot" id="JPQ-sg-cXy"/>
                         <segue destination="sYR-Ou-YIp" kind="push" identifier="goToGame" id="uHl-Xa-npD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Oa-du-h7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2275" y="-204"/>
+            <point key="canvasLocation" x="2408" y="-427"/>
         </scene>
         <!--Log In SOS App-->
         <scene sceneID="Pc4-2L-RFo">
@@ -750,7 +751,7 @@
         <image name="papers.co-mi21-somedays-rain-window-wet-nature-33-iphone6-wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wpd-qf-PTS"/>
-        <segue reference="ukB-co-0K5"/>
+        <segue reference="uHl-Xa-npD"/>
+        <segue reference="scG-c5-yOw"/>
     </inferredMetricsTieBreakers>
 </document>
